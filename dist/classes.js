@@ -33,11 +33,35 @@ var CharAccount = /** @class */ (function (_super) {
         _this.level = level;
         return _this;
     }
+    Object.defineProperty(CharAccount.prototype, "getLevel", {
+        get: function () {
+            console.log("------GET------");
+            return this.level;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(CharAccount.prototype, "setLevel", {
+        set: function (level) {
+            this.level = level;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    CharAccount.prototype.logCharDetails = function () {
+        console.log("The player " + this.name + " has the char " + this.nickname + " at level " + this.level);
+    };
     return CharAccount;
 }(UserAccount));
-var igor = new UserAccount("Igor", 22);
-console.log(igor);
-console.log(igor.age);
-igor.logDatails();
 var john = new CharAccount("John", 45, "johnmaster", 80);
 console.log(john);
+console.log(john.level);
+john.logCharDetails();
+john.setLevel = 499;
+console.log(john.getLevel);
+/**
+ * Private: não permite que a propiedade de uma classe seja lida ou alterada fora da classe.
+ * readonly: permite que a propiedade seja apenas lida.
+ * public: permite que a propiedade seja lida e editada em qualquer lugar do código (ela é implícita).
+ * protected: permite chamar a propriedade dentro da classe ou da classe extendendo ela, mas não consegue chamar fora da classe.
+ */ 
